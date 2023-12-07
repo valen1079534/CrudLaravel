@@ -8,7 +8,7 @@
 
 <div class="md:w-4/12 bg-white p-6 rounded-lg drop-shadow-2xl py-3 my-24">
 
-    <form action="POST">
+    <form  method="POST">
         @csrf
 
         <div class="mb-5">

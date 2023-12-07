@@ -6,33 +6,43 @@
 
 @section('contenido')
 
-<div>
-    <h1>Hola</h1>
-</div>
-{{-- <table class="table-auto">
+<button type="submit" > <a href="{{route('Crear')}}">Registrar usuario</a> </button>
+<br>
+<table class="table-auto">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Nombre</th>
-        <th>correo</th>
+        <th class="bg-gray-400 p-3 border border-b-2 ">#</th>
+        <th class="bg-gray-400 p-3 border border-b-2 ">Nombre</th>
+        <th class="bg-gray-400 p-3 border border-b-2 ">Cedula</th>
+        <th class="bg-gray-400 p-3 border border-b-2 ">Direccion</th>
+        <th class="bg-gray-400 p-3 border border-b-2 ">Telefono</th>
+        <th class="bg-gray-400 p-3 border border-b-2 ">Controladores</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-        <td>Malcolm Lockyer</td>
-        <td>1961</td>
-      </tr>
-      <tr>
-        <td>Witchy Woman</td>
-        <td>The Eagles</td>
-        <td>1972</td>
-      </tr>
-      <tr>
-        <td>Shining Star</td>
-        <td>Earth, Wind, and Fire</td>
-        <td>1975</td>
-      </tr>
+        @foreach($clientes as $cliente)
+        <tr>
+            <td> {{$cliente->id}} </td>
+            <td> {{$cliente->nombre}} </td>
+            <td> {{$cliente->cedula}} </td>
+            <td> {{$cliente->direccion}} </td>
+            <td> {{$cliente->telefono}} </td>
+
+            <td>
+                <button>actualizar usuario</button>
+            </td>
+            <td>
+                <form action="">
+                    <button>eliminar</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
     </tbody>
-  </table> --}}
+  </table>
+
+
+
+
+
 @endsection

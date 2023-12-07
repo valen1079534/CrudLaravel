@@ -15,13 +15,13 @@ class RegistroController extends Controller
     public function store(Request $request){
         $this->validate($request, [
             'name' => 'required | max:50',
-            'email' => 'required | unique:users|max:30',
+            'email' => 'required |unique:users|email|max:30',
             'password' => 'required',
         ]);
 
         User::create([
             'name' => $request->name,
-            'email' => Str::slug($request->email),
+            'email' => Str::lower($request->email),
             'password' => Hash::make($request->password)
         ]);
      /*   dd("hoa"); */
