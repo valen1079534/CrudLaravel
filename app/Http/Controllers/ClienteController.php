@@ -12,7 +12,6 @@ class ClienteController extends Controller
         $this->middleware('auth');
     }
 
-
     public function index()
     {
         //
@@ -20,34 +19,29 @@ class ClienteController extends Controller
         return view('vista', compact('clientes'));
     }
 
-
     public function create()
     {
         //
 
     }
 
-
     public function store(Request $request)
     {
-        //
-        $this->validate($request, [
-            'nombre' => 'required  | max:50',
-            'cedula' => 'required | unique:clientes | max:20',
-            'direccion' => 'required | max:50',
-            'telefono' => 'required | max:20 | unique:cliente',
+        $this -> validate ($request, [
+            'name' => 'required',
+            'cedula' => 'required|unique:clientes',
+            'direccion' => 'required',
+            'telefono' => 'required'
         ]);
 
         $clientes = new Cliente();
-        $clientes -> nombre=$request->input('nombre');
-        $clientes -> cedula=$request->input('cedula');
-        $clientes -> direccion=$request->input('direccion');
-        $clientes -> telefono=$request->input('telefono');
-
+        $clientes -> name = $request -> input('name');
+        $clientes -> cedula = $request -> input('cedula');
+        $clientes -> direccion = $request -> input('direccion');
+        $clientes -> telefono = $request -> input('telefono');
         $clientes->save();
-        return redirect
+        return redirect(route('vista'));
     }
-
 
     public function show(Cliente $cliente)
     {
@@ -55,20 +49,39 @@ class ClienteController extends Controller
     }
 
 
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
         //
+        $cliente = Cliente::find($id);
+        return view('clientes.edit', ['clientes' => $cliente]);
     }
 
 
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
         //
+        $this->validate($request,[
+            'name' => 'required',
+            'cedula' =>'required',
+            'direccion' => 'required',
+            'telefono' => 'required'
+        ]);
+
+        $clientes = cliente::find($id);
+        $clientes -> name = $request -> input('name');
+        $clientes -> cedula = $request -> input('cedula');
+        $clientes -> direccion = $request -> input('direccion');
+        $clientes -> telefono = $request -> input('telefono');
+        $clientes -> save();
+        return redirect(route('vista'));
     }
 
 
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
         //
+        $cliente =Cliente::find($id);
+        $cliente ->delete();
+        return redirect()->back();
     }
 }

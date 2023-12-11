@@ -12,20 +12,21 @@ class RegistroController extends Controller
     public function index(){
         return view('auth.registro');
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required | max:50',
             'email' => 'required |unique:users|email|max:30',
             'password' => 'required',
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => Str::lower($request->email),
-            'password' => Hash::make($request->password)
-        ]);
-     /*   dd("hoa"); */
-     auth()->attempt($request->only('email','password'));
-       return redirect()->route('loginIndex');
+            User::create([
+                'name' => $request->name,
+                'email' => Str::lower($request->email),
+                'password' => Hash::make($request->password)
+            ]);
+            /*   dd("hoa"); */
+            auth()->attempt($request->only('email','password'));
+            return redirect()->route('loginIndex');
     }
 }

@@ -4,6 +4,7 @@ use App\http\Controllers\RegistroController;
 use App\http\Controllers\LoginController;
 use App\http\Controllers\ClienteController;
 use App\http\Controllers\CrearUsuarioController;
+use App\http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,18 +24,18 @@ Route::get('/', function () {
 });
 
 Route::get('/registro', [RegistroController::class, 'index'])->name('registre');
-Route::post('/crear-cuenta', [RegistroController::class, 'store']);
-
-Route::resource('crud', ClienteController::class);
-Route::get('/vista', [ClienteController::class, 'index'])->name('vista');
+Route::post('/registro', [RegistroController::class, 'store']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('loginIndex');
 Route::post('/login', [LoginController::class, 'store']);
 
-Route::post('logout', [LogoutController::class, 'store'])->name('logout');
+Route::get('/vista', [ClienteController::class, 'index'])->name('vista');
+
+Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+Route::resource('crud', ClienteController::class);
 
 Route::get('/Crear', [CrearUsuarioController::class, 'index'])->name('Crear');
-
 
 
 

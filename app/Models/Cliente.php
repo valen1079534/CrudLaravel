@@ -9,8 +9,8 @@ class Cliente extends Model
 {
     use HasFactory;
     protected $table = 'clientes';
-    protected $primaryKey = 'cedula';
-    protected $fillable = ['nombre, cedula, direccion, telefono'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['name', 'cedula', 'direccion', 'telefono'];
     protected $guarded= [];
     public $timestamps = false;
 }

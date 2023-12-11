@@ -14,7 +14,7 @@
         <div class="mb-5">
             <label for="email" class=" block uppercase text-gray-600 font-bold text-xl">Correo</label>
 
-            <input type="text" id="email" name="email" class="border p-1 w-full rounded-lg mb-10 ">
+            <input type="email" id="email" name="email" class="border p-1 w-full rounded-lg mb-10 ">
         </div>
 
             <div class="mb-5">
